@@ -38,8 +38,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-directions = ('n', 's', 'e', 'w')
-command_list = ["n", "s", "e", "w", "q"]
+player = Player("Barthimus", room['outside'])
+
 
 # Write a loop that:
 #
@@ -51,3 +51,39 @@ command_list = ["n", "s", "e", "w", "q"]
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print(
+        player.room.name, "\n",
+        player.room.description
+    )
+
+    direction = input("Input a direction: ")
+
+    if direction.lower() == 'q':
+        print(f"Game Ended")
+        break
+
+    elif direction.lower() == 'n':
+        if hasattr(player.room, "n_to"):
+            player.room = player.room.n_to
+        else:
+            print(f"Wrong direction.")
+
+    elif direction.lower() == 's':
+        if hasattr(player.room, "s_to"):
+            player.room = player.room.s_to
+        else:
+            print(f"Wrong direction.")
+
+    elif direction.lower() == 'w':
+        if hasattr(player.room, "w_to"):
+            player.room = player.room.w_to
+        else:
+            print(f"Wrong direction.")
+
+    elif direction.lower() == 'e':
+        if hasattr(player.room, "e_to"):
+            player.room = player.room.e_to
+        else:
+            print(f"Wrong direction.")
